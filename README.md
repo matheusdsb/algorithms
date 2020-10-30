@@ -1,4 +1,4 @@
-# talgorithms
+# algorithms
 
 A simple application that is used for test some algorithms, such as binary search
 
