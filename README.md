@@ -1,6 +1,7 @@
 # algorithms
 
-A simple application that sorts an array using insertion sort method, and after that, searches for a value in this array using binary search
+A simple application that sorts an array using insertion sort method, and after that, searches for a value in this array using binary search.
+Sooner other more efficient sort methods will be added to the project.
 
 ## Prerequisites
 
