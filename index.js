@@ -1,39 +1,83 @@
 const readline = require("readline");
 const arrayHelper = require("./src/helpers/array-helper");
 const binarySearch = require('./src/search/binary-search');
+const insertionSort = require('./src/sort/insertion-sort');
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
+let array = null;
+let searchedValue = null;
 
-const recursiveQuestion = () => {
-    rl.question("Please enter a valid prime number less than 100 ", function(input) {
-       
-        const inputAsNumber = parseInt(input);        
+function generateAndSortArray(size) {
+    let array = generateArray(size);
+    return sortArray(array);
+}
 
-        if(!isNaN(inputAsNumber)) {
-            const array = arrayHelper.getPrimeNumbersLessThan100();
-            const index = binarySearch.findIndexOfNumberInSortedArray(inputAsNumber, array);
+function generateArray(size) {
+    console.log('generationg a random array of', size, 'items...');
+    const array = arrayHelper.generateRandomArrayOfNumbers(size);
+    console.log('generated array:', array);
+    return array;
+}
 
-            if(index >= 0) {
-                console.log(inputAsNumber, ' found at index ', index);
-            } else {
-                console.error(inputAsNumber, ' is not a valid prime number between 0 and 100');
-            }
+function sortArray(array) {
+    console.log('sorting the generated array...');
+    insertionSort.sort(array);
+    console.log('array afte sorting', array);
+    return array;
+}
 
-            return rl.close();
-        }        
+function findIndexValueInArray(value, array) {
+    const index = binarySearch.findIndexOfNumberInSortedArray(value, array);
+
+    if(index >= 0) {
+        console.log(value, 'found at index', index);
+    } else {
+        console.error(value, 'not found');
+    }
+}
+
+doFirstQuestion = () => {
+    rl.question("Lets create a random array. Please enter how many items it will have \n", function(arraySizeInput) {
+    
+        const arraySizeAsNumber = parseInt(arraySizeInput);      
         
-        recursiveQuestion();
+        if(isNaN(arraySizeAsNumber)) {
+            console.error(arraySizeInput, 'is not a valid number');
+            rl.close();
+        }
+    
+        array = generateAndSortArray(arraySizeAsNumber);
+        doNextQuestion(); 
     });
 }
 
+doNextQuestion = () => {
+    rl.question("\n\nEnter a number to be found in the array\n", function(searchedValueInput) {
 
-recursiveQuestion();
+        const searchedValueAsNumber = parseInt(searchedValueInput);
+
+        if(isNaN(searchedValueAsNumber)) {
+            console.error(searchedValueInput, 'is not a valid number');
+            rl.close();
+        }
+
+        searchedValue = searchedValueAsNumber;        
+        return rl.close();
+    });  
+}
 
 rl.on("close", function() {
+
+    if(array && searchedValue) {
+        findIndexValueInArray(searchedValue, array);
+    }
+
     console.log("\nBYE BYE !!!");
     process.exit(0);
 });
+
+doFirstQuestion();

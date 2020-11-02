@@ -15,12 +15,10 @@ module.exports = class BinarySearch {
         while(maxIndex >= minIndex) {
             guessedIndex = this.getMiddleIndex(minIndex, maxIndex);
             const guessedValue = array[guessedIndex];
-            attempts++;
-
-            console.info('guessing at index ', guessedIndex);
+            attempts++;            
 
             if(guessedValue === searchedValue) {
-                console.info('found attempting ', attempts, ' times');
+                console.info('Value found attempting', attempts, 'times');
                 return guessedIndex;
             }
 
