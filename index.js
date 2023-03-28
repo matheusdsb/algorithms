@@ -26,8 +26,7 @@ function generateArray(size) {
 
 function sortArray(array) {
     console.log('sorting the generated array...');
-    insertionSort.sort([...array]);
-    const sortedArray = quickSort.sort([...array])
+    const sortedArray = quickSort.sort(array)
     console.log('array afte sorting', sortedArray);
     return sortedArray;
 }
