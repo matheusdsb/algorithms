@@ -10,14 +10,21 @@ function removeLesser(array, pivot) {
     return result
 }
 
+function getRandomIndex(arrayLength) {
+    const randomNumber = Math.random() * arrayLength
+    const numberRoundedFlor = Math.floor(randomNumber)
+    const limit = arrayLength -1
+    return numberRoundedFlor < limit ? numberRoundedFlor : limit
+}
+
 function recursiveSort(array) {
     if(array.length < 2) {
         return array
     }
-    const pivot = array.pop()
+    const pivotIndex = getRandomIndex(array.length)
+    const pivot = array.splice(pivotIndex, 1)[0]
     const lesser = removeLesser(array, pivot);
-    const greater = [...array]
-    return [...recursiveSort(lesser), pivot, ...recursiveSort(greater)]
+    return [...recursiveSort(lesser), pivot, ...recursiveSort(array)]
 }
 
 module.exports = class QuickSort {
