@@ -1,16 +1,18 @@
+function insert(array, rightIndex, value) {
+    for(var j = rightIndex; j >= 0 && array[j] > value; j--) {
+        array[j + 1] = array[j];
+    }   
+    array[j + 1] = value;
+}
 module.exports = class InsertionSort {
-
-    static insert(array, rightIndex, value) {
-        for(var j = rightIndex; j >= 0 && array[j] > value; j--) {
-            array[j + 1] = array[j];
-        }   
-        array[j + 1] = value;
-    }
-
     static sort(array) {
+        const start = new Date();
         for(var i = 1; i < array.length; i++) {
-            this.insert(array, i -1, array[i]);
+            insert(array, i -1, array[i]);
         }
+        const end = new Date();
+        const totalTime = end.getTime() - start.getTime();
+        console.log(`insertion sort took ${totalTime} miliseconds`)
         return array;
     }
 }
