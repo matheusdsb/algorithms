@@ -17,14 +17,14 @@ function getRandomIndex(arrayLength) {
     return numberRoundedFlor < limit ? numberRoundedFlor : limit
 }
 
-function recursiveSort(array) {
+async function recursiveSort(array) {
     if(array.length < 2) {
         return array
     }
     const pivotIndex = getRandomIndex(array.length)
     const pivot = array.splice(pivotIndex, 1)[0]
     const lesser = removeLesser(array, pivot);
-    return [...recursiveSort(lesser), pivot, ...recursiveSort(array)]
+    return [...await recursiveSort(lesser), pivot, ...await recursiveSort(array)]
 }
 
 module.exports = class QuickSort {

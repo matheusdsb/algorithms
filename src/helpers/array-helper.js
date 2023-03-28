@@ -5,7 +5,7 @@ module.exports = class ArrayHelper  {
             41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
     }
 
-    static generateRandomArrayOfNumbers(numberOfItems) {
+    static async generateRandomArrayOfNumbers(numberOfItems) {
         const randomArray = [];
 
         for(var i = 1; i <= numberOfItems; i++) {

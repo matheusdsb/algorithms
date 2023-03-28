@@ -12,21 +12,21 @@ const rl = readline.createInterface({
 let array = null;
 let searchedValue = null;
 
-function generateAndSortArray(size) {
-    let array = generateArray(size);
+async function generateAndSortArray(size) {
+    let array = await generateArray(size);
     return sortArray(array);
 }
 
-function generateArray(size) {
+async function generateArray(size) {
     console.log('generationg a random array of', size, 'items...');
-    const array = arrayHelper.generateRandomArrayOfNumbers(size);
+    const array = await arrayHelper.generateRandomArrayOfNumbers(size);
     console.log('generated array:', array);
     return array;
 }
 
-function sortArray(array) {
+async function sortArray(array) {
     console.log('sorting the generated array...');
-    const sortedArray = quickSort.sort(array)
+    const sortedArray = await quickSort.sort(array)
     console.log('array afte sorting', sortedArray);
     return sortedArray;
 }
@@ -41,8 +41,8 @@ function findIndexValueInArray(value, array) {
     }
 }
 
-doFirstQuestion = () => {
-    rl.question("Lets create a random array. Please enter how many items it will have \n", function(arraySizeInput) {
+doFirstQuestion = async () => {
+    rl.question("Lets create a random array. Please enter how many items it will have \n", async function(arraySizeInput) {
     
         const arraySizeAsNumber = parseInt(arraySizeInput);      
         
@@ -51,12 +51,12 @@ doFirstQuestion = () => {
             rl.close();
         }
     
-        array = generateAndSortArray(arraySizeAsNumber);
+        array = await generateAndSortArray(arraySizeAsNumber);
         doNextQuestion(); 
     });
 }
 
-doNextQuestion = () => {
+doNextQuestion = async () => {
     rl.question("\n\nEnter a number to be found in the array\n", function(searchedValueInput) {
 
         const searchedValueAsNumber = parseInt(searchedValueInput);
