@@ -41,7 +41,7 @@ function findIndexValueInArray(value, array) {
     }
 }
 
-doFirstQuestion = async () => {
+doFirstQuestion = () => {
     rl.question("Lets create a random array. Please enter how many items it will have \n", async function(arraySizeInput) {
     
         const arraySizeAsNumber = parseInt(arraySizeInput);      

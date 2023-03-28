@@ -28,9 +28,9 @@ async function recursiveSort(array) {
 }
 
 module.exports = class QuickSort {
-    static sort(array) {
+    static async sort(array) {
         const start = new Date();
-        const result = recursiveSort(array)
+        const result = await recursiveSort(array)
         const end = new Date()
         const totalTime = end.getTime() - start.getTime();
         console.log(`quicksort took ${totalTime} miliseconds`)
