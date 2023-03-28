@@ -2,6 +2,7 @@ const readline = require("readline");
 const arrayHelper = require("./src/helpers/array-helper");
 const binarySearch = require('./src/search/binary-search');
 const insertionSort = require('./src/sort/insertion-sort');
+const quickSort = require('./src/sort/quick-sort')
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -25,9 +26,10 @@ function generateArray(size) {
 
 function sortArray(array) {
     console.log('sorting the generated array...');
-    insertionSort.sort(array);
-    console.log('array afte sorting', array);
-    return array;
+    insertionSort.sort([...array]);
+    const sortedArray = quickSort.sort([...array])
+    console.log('array afte sorting', sortedArray);
+    return sortedArray;
 }
 
 function findIndexValueInArray(value, array) {
