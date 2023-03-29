@@ -20,14 +20,14 @@ async function generateAndSortArray(size) {
 async function generateArray(size) {
     console.log('generationg a random array of', size, 'items...');
     const array = await arrayHelper.generateRandomArrayOfNumbers(size);
-    console.log('generated array:', array);
+    console.log('generated array:', array, 'length:', array.length);
     return array;
 }
 
 async function sortArray(array) {
     console.log('sorting the generated array...');
     const sortedArray = await quickSort.sort(array)
-    console.log('array afte sorting', sortedArray);
+    console.log('array afte sorting', sortedArray, 'length:', sortedArray.length);
     return sortedArray;
 }
 
